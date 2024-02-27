@@ -19,7 +19,7 @@ class StartFragment : Fragment() {
         val channelField = binding.channel
 
         startBtn.setOnClickListener {
-            val action = StartFragmentDirections.actionStartFragmentToPagingFragment(channelField.text.toString())
+            val action = StartFragmentDirections.actionStartFragmentToPagingFragment(channelField.text.toString().trim())
             Navigation.findNavController(startBtn).navigate(action)
         }
 
