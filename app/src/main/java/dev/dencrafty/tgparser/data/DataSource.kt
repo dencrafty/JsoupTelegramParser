@@ -51,7 +51,7 @@ class DataSource @Inject constructor(
             val document: Document = Jsoup.connect("$LOCAL_URL$channelId/$feedId").get()
             message = document.head().select(DESCRIPTION_META).attr(CONTENT_ATTR)
         }
-        return Feed(channelId, feedId, message)
+        return Feed(feedId, message)
     }
 
     suspend fun fetchChannelDescription(channelId: String) : String {
