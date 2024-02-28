@@ -17,6 +17,8 @@ import javax.inject.Singleton
 const val BASE_URL = "https://t.me/s/"
 const val LOCAL_URL = "https://t.me/"
 const val COMMERCIAL_URL = "https://t.me/+"
+const val TGSTAT_URL = "https://tgstat.ru/channel/@"
+
 const val LINK_CANONICAL = "link[rel=canonical]"
 const val HREF_ATTR = "href"
 const val CONTENT_ATTR = "content"
@@ -48,6 +50,6 @@ class DataSource @Inject constructor(
             val document: Document = Jsoup.connect("$LOCAL_URL$channelId/$feedId").get()
             message = document.head().select(DESCRIPTION_META).attr(CONTENT_ATTR)
         }
-        return Feed(feedId, message)
+        return Feed(channelId, feedId, message)
     }
 }

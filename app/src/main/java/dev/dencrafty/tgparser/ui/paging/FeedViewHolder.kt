@@ -1,9 +1,13 @@
 package dev.dencrafty.tgparser.ui.paging
 
+import android.content.Intent
+import android.content.Intent.ACTION_VIEW
+import android.net.Uri
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import dev.dencrafty.tgparser.R
+import dev.dencrafty.tgparser.data.TGSTAT_URL
 import dev.dencrafty.tgparser.data.model.Feed
 import dev.dencrafty.tgparser.databinding.FeedViewholderBinding
 
@@ -36,6 +40,14 @@ class FeedViewHolder(
 
             if (feed.message.isEmpty()) {
                 binding.deletedDetected.visibility = View.VISIBLE
+                binding.deletedDetected.setOnClickListener {
+                    root.context.startActivity(
+                        Intent(
+                            ACTION_VIEW,
+                            Uri.parse("$TGSTAT_URL${feed.channelId}/${feed.index}")
+                        )
+                    )
+                }
             } else {
                 binding.deletedDetected.visibility = View.GONE
             }

@@ -60,6 +60,7 @@
         android:paddingStart="8dp"
         android:paddingTop="8dp"
         android:paddingEnd="8dp"
+        android:paddingBottom="8dp"
         android:text="@string/deleted_detected"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="14sp"
