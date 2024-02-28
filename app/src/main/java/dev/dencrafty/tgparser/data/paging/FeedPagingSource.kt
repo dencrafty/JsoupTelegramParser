@@ -17,7 +17,7 @@ class FeedPagingSource @Inject constructor(
     private val repository: Repository
 ) : PagingSource<Int, Feed>() {
 
-    var channel = FeedChannel()
+    lateinit var channel: FeedChannel
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Feed> {
         return try {

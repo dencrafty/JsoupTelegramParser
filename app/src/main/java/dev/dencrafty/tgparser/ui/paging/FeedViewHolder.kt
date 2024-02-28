@@ -35,9 +35,9 @@ class FeedViewHolder(
             }
 
             if (feed.message.isEmpty()) {
-                binding.deletedDetected.visibility = View.VISIBLE
+                binding.withoutMessage.visibility = View.VISIBLE
             } else {
-                binding.deletedDetected.visibility = View.GONE
+                binding.withoutMessage.visibility = View.GONE
             }
         }
     }
