@@ -38,8 +38,8 @@ class PagingViewModel @Inject constructor(
             val index = repository.channelSize(channelId)
             try {
                 _uiState.update {
-                    pagingSource.channelId = channelId
-                    pagingSource.channelSize = index
+                    pagingSource.channel.id = channelId
+                    pagingSource.channel.size = index
                     PagingUIState.IndexSuccess
                 }
             } catch (ioe: IOException) {

@@ -2,6 +2,7 @@ package dev.dencrafty.tgparser.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import dev.dencrafty.tgparser.data.model.FeedChannel
 import dev.dencrafty.tgparser.data.model.Feed
 import dev.dencrafty.tgparser.data.repository.Repository
 import javax.inject.Inject
@@ -16,14 +17,15 @@ class FeedPagingSource @Inject constructor(
     private val repository: Repository
 ) : PagingSource<Int, Feed>() {
 
-    var channelId = ""
-    var channelSize = 0
+//    var channelId = ""
+//    var channelSize = 0
+    val channel = FeedChannel()
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Feed> {
         return try {
             val nextPageNumber = params.key ?: 1
             val response =
-                repository.pageFeed(channelId, channelSize, nextPageNumber)
+                repository.pageFeed(channel.id, channel.size, nextPageNumber)
             LoadResult.Page(
                 data = response,
                 prevKey = null,
