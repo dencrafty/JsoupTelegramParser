@@ -1,10 +1,11 @@
 package dev.dencrafty.tgparser.data.repository
 
 import dev.dencrafty.tgparser.data.model.Feed
+import dev.dencrafty.tgparser.data.model.FeedChannel
 
 interface IRepository {
-    // Узнаю общее количество выпущенных постов на канале с начала основания. Посты в тг нумеруются от 1 до N.
-    suspend fun channelSize(channelId: String) : Int
+
+    suspend fun channelInfo(channelId: String) : FeedChannel
     // Вытягиваю один пост по имени канала и номеру поста.
     suspend fun singleFeed(channelId: String, feedId: Int) : Feed
     /*
@@ -12,4 +13,5 @@ interface IRepository {
      запросов с помощью singleFeed и формируется список из 20 сообщений.
      */
     suspend fun pageFeed(channelId: String, channelSize: Int, nextPageNumber: Int) : List<Feed>
+
 }

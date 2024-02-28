@@ -29,6 +29,7 @@ class DataSource @Inject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
 
+    // Узнаю общее количество выпущенных постов на канале с начала основания. Посты в тг нумеруются от 1 до N.
     suspend fun fetchChannelSize(channelId: String) : Int {
         val channelSize : Int
         withContext(ioDispatcher) {
@@ -51,5 +52,14 @@ class DataSource @Inject constructor(
             message = document.head().select(DESCRIPTION_META).attr(CONTENT_ATTR)
         }
         return Feed(channelId, feedId, message)
+    }
+
+    suspend fun fetchChannelDescription(channelId: String) : String {
+        val channelDescription : String
+        withContext(ioDispatcher) {
+            val document: Document = Jsoup.connect("$LOCAL_URL$channelId").get()
+            channelDescription = document.head().select(DESCRIPTION_META).attr(CONTENT_ATTR)
+        }
+        return channelDescription
     }
 }

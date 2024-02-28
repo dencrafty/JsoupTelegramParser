@@ -35,11 +35,10 @@ class PagingViewModel @Inject constructor(
      */
     fun requestChannelInfo(channelId: String) {
         viewModelScope.launch(ioDispatcher) {
-            val index = repository.channelSize(channelId)
+            val channel = repository.channelInfo(channelId)
             try {
                 _uiState.update {
-                    pagingSource.channel.id = channelId
-                    pagingSource.channel.size = index
+                    pagingSource.channel = channel
                     PagingUIState.IndexSuccess
                 }
             } catch (ioe: IOException) {

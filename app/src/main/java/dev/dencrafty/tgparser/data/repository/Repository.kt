@@ -2,6 +2,7 @@ package dev.dencrafty.tgparser.data.repository
 
 import dev.dencrafty.tgparser.data.DataSource
 import dev.dencrafty.tgparser.data.model.Feed
+import dev.dencrafty.tgparser.data.model.FeedChannel
 import dev.dencrafty.tgparser.data.paging.PAGE_SIZE
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -11,8 +12,10 @@ class Repository @Inject constructor(
     private val dataSource: DataSource
 ) : IRepository {
 
-    override suspend fun channelSize(channelId: String): Int {
-        return dataSource.fetchChannelSize(channelId)
+    override suspend fun channelInfo(channelId: String): FeedChannel {
+        val size = dataSource.fetchChannelSize(channelId)
+        val description = dataSource.fetchChannelDescription(channelId)
+        return FeedChannel(channelId, size, description)
     }
 
     override suspend fun singleFeed(channelId: String, feedId: Int): Feed {
