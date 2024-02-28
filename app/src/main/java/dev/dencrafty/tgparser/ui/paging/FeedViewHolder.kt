@@ -7,7 +7,7 @@ import dev.dencrafty.tgparser.R
 import dev.dencrafty.tgparser.data.model.Feed
 import dev.dencrafty.tgparser.databinding.FeedViewholderBinding
 
-class FeedViewHolder (
+class FeedViewHolder(
     private val binding: FeedViewholderBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -15,12 +15,29 @@ class FeedViewHolder (
         binding.apply {
             binding.title.text = feed.index.toString()
             binding.description.text = feed.message
+
             if (feed.isCommercial) {
                 binding.commercialDetected.visibility = View.VISIBLE
-                binding.description.setTextColor(ContextCompat.getColor(root.context, R.color.faint_black))
+                binding.description.setTextColor(
+                    ContextCompat.getColor(
+                        root.context,
+                        R.color.faint_black
+                    )
+                )
             } else {
                 binding.commercialDetected.visibility = View.GONE
-                binding.description.setTextColor(ContextCompat.getColor(root.context, R.color.black))
+                binding.description.setTextColor(
+                    ContextCompat.getColor(
+                        root.context,
+                        R.color.black
+                    )
+                )
+            }
+
+            if (feed.message.isEmpty()) {
+                binding.deletedDetected.visibility = View.VISIBLE
+            } else {
+                binding.deletedDetected.visibility = View.GONE
             }
         }
     }

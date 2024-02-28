@@ -6,5 +6,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_host">HostActivity</string>
     <string name="description">Соответствует FOSS (free open source) community\nМожно читать телеграм каналы без авторизации\nОтсутствуют аналитич. и прочие трэкеры\nТолько текстовая информация</string>
-    <string name="commercial_detected">Commercial post detected</string>
+    <string name="commercial_detected">Probably commercial post detected</string>
+    <string name="deleted_detected">The author probably deleted the post</string>
 </resources>
